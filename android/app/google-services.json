@@ -15,11 +15,11 @@
       },
       "oauth_client": [
         {
-          "client_id": "973227824847-t29bs06nf3lr683sl3q89n3cqd1mfn9b.apps.googleusercontent.com",
+          "client_id": "973227824847-j4t1mqtnu5flcphvi5sio10kf152ur8k.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "io.cakranegara.quizapp",
-            "certificate_hash": "18899d59a0026453e0f208186671924a0d4d8f4a"
+            "certificate_hash": "2f81021581768a3f964e6b30b49065426f0c47d8"
           }
         },
         {
