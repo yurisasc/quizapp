@@ -13,25 +13,26 @@ class TopicsScreen extends StatelessWidget {
         if (snap.hasData) {
           List<Topic> topics = snap.data;
           return Scaffold(
-              appBar: AppBar(
-                backgroundColor: Colors.deepPurple,
-                title: Text('Topics'),
-                actions: [
-                  IconButton(
-                    icon: Icon(FontAwesomeIcons.userCircle,
-                        color: Colors.pink[200]),
-                    onPressed: () => Navigator.pushNamed(context, '/profile'),
-                  ),
-                ],
-              ),
-              drawer: TopicDrawer(topics: snap.data),
-              body: GridView.count(
-                primary: false,
-                padding: const EdgeInsets.all(20.0),
-                crossAxisSpacing: 2,
-                children:
-                    topics.map((topic) => TopicItem(topic: topic)).toList(),
-              ));
+            appBar: AppBar(
+              backgroundColor: Colors.deepPurple,
+              title: Text('Topics'),
+              actions: [
+                IconButton(
+                  icon: Icon(FontAwesomeIcons.userCircle,
+                      color: Colors.pink[200]),
+                  onPressed: () => Navigator.pushNamed(context, '/profile'),
+                ),
+              ],
+            ),
+            drawer: TopicDrawer(topics: snap.data),
+            body: GridView.count(
+              primary: false,
+              padding: const EdgeInsets.all(20.0),
+              crossAxisCount: 2,
+              children: topics.map((topic) => TopicItem(topic: topic)).toList(),
+            ),
+            bottomNavigationBar: AppBottomNav(),
+          );
         } else {
           return LoadingScreen();
         }
@@ -42,6 +43,7 @@ class TopicsScreen extends StatelessWidget {
 
 class TopicItem extends StatelessWidget {
   final Topic topic;
+
   const TopicItem({Key key, this.topic}) : super(key: key);
 
   @override
@@ -67,6 +69,23 @@ class TopicItem extends StatelessWidget {
                   'assets/covers/${topic.img}',
                   fit: BoxFit.contain,
                 ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Expanded(
+                      child: Padding(
+                        padding: EdgeInsets.only(left: 10, right: 10),
+                        child: Text(
+                          topic.title,
+                          style: TextStyle(
+                              height: 1.5, fontWeight: FontWeight.bold),
+                          overflow: TextOverflow.fade,
+                          softWrap: false,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
               ],
             ),
           ),
@@ -78,6 +97,7 @@ class TopicItem extends StatelessWidget {
 
 class TopicScreen extends StatelessWidget {
   final Topic topic;
+
   TopicScreen({Key key, this.topic});
 
   @override
@@ -109,6 +129,7 @@ class TopicScreen extends StatelessWidget {
 
 class QuizList extends StatelessWidget {
   final Topic topic;
+
   QuizList({Key key, this.topic});
 
   @override
@@ -139,7 +160,7 @@ class QuizList extends StatelessWidget {
                 overflow: TextOverflow.fade,
                 style: Theme.of(context).textTheme.subhead,
               ),
-              leading: QuizBadge(topic: topic, quizId: quiz.id),
+              //leading: QuizBadge(topic: topic, quizId: quiz.id),
             ),
           ),
         ),
@@ -150,6 +171,7 @@ class QuizList extends StatelessWidget {
 
 class TopicDrawer extends StatelessWidget {
   final List<Topic> topics;
+
   TopicDrawer({Key key, this.topics});
 
   @override
