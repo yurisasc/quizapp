@@ -44,6 +44,7 @@ class TopicsScreen extends StatelessWidget {
 
 class TopicItem extends StatelessWidget {
   final Topic topic;
+
   const TopicItem({Key key, this.topic}) : super(key: key);
 
   @override
@@ -51,6 +52,21 @@ class TopicItem extends StatelessWidget {
     return Container(
       child: Hero(
         tag: topic.img,
+
+        /// Needed to fix the overflow
+        /// (from https://github.com/flutter/flutter/issues/27320)
+        flightShuttleBuilder: (
+          BuildContext flightContext,
+          Animation<double> animation,
+          HeroFlightDirection flightDirection,
+          BuildContext fromHeroContext,
+          BuildContext toHeroContext,
+        ) {
+          return SingleChildScrollView(
+            child: fromHeroContext.widget,
+          );
+        },
+
         child: Card(
           clipBehavior: Clip.antiAlias,
           child: InkWell(
@@ -111,6 +127,21 @@ class TopicScreen extends StatelessWidget {
         children: [
           Hero(
             tag: topic.img,
+
+            /// Needed to fix the overflow
+            /// (from https://github.com/flutter/flutter/issues/27320)
+            flightShuttleBuilder: (
+                BuildContext flightContext,
+                Animation<double> animation,
+                HeroFlightDirection flightDirection,
+                BuildContext fromHeroContext,
+                BuildContext toHeroContext,
+                ) {
+              return SingleChildScrollView(
+                child: fromHeroContext.widget,
+              );
+            },
+
             child: Image.asset(
               'assets/covers/${topic.img}',
               width: MediaQuery.of(context).size.width,
