@@ -71,7 +71,7 @@ class TopicProgress extends StatelessWidget {
         _progressCount(report, topic),
         Expanded(
           child: AnimatedProgressbar(
-            value: 0,
+            value: _calculateProgress(topic, report),
             height: 8,
           ),
         ),
@@ -84,7 +84,7 @@ class TopicProgress extends StatelessWidget {
       return Padding(
         padding: const EdgeInsets.only(left: 8),
         child: Text(
-          '${report.topics[topic.id]?.length ?? 0 / topic?.quizzes?.length ?? 0}',
+          '${report.topics[topic.id]?.length ?? 0} / ${topic?.quizzes?.length ?? 0}',
           style: TextStyle(fontSize: 10, color: Colors.grey),
         ),
       );
