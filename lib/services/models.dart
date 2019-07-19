@@ -74,7 +74,7 @@ class Topic {
 class Report {
   String uid;
   int total;
-  Map topics;
+  dynamic topics;
 
   Report({this.uid, this.topics, this.total});
 

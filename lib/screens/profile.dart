@@ -10,12 +10,11 @@ class ProfileScreen extends StatelessWidget {
   Widget build(BuildContext context) {
 
     var user = Provider.of<FirebaseUser>(context);
-    bool isAnonymous = user != null ? user.isAnonymous : true;
 
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.deepOrange,
-        title: Text(isAnonymous ? 'Guest' : user.displayName),
+        title: Text(user?.displayName ?? 'Guest'),
       ),
       body: Center(
         child: FlatButton(
