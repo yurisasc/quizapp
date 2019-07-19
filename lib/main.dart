@@ -4,11 +4,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:provider/provider.dart';
-import 'package:quizapp/screens/about.dart';
-import 'package:quizapp/screens/login.dart';
-import 'package:quizapp/screens/profile.dart';
-import 'package:quizapp/screens/topics.dart';
-import 'package:quizapp/services/auth.dart';
+import 'package:quizapp/screens/screens.dart';
+import 'package:quizapp/services/services.dart';
 
 void main() => runApp(MyApp());
 
@@ -20,6 +17,7 @@ class MyApp extends StatelessWidget {
       /// widgets to access the data no matter how deep they 
       /// are in the widget tree.
       providers: [
+        StreamProvider<Report>.value(stream: Global.reportRef.documentStream),
         StreamProvider<FirebaseUser>.value(stream: AuthService().user),
       ],
       child: MaterialApp(

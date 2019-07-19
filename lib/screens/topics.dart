@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:quizapp/screens/quiz.dart';
 import 'package:quizapp/services/services.dart';
+import 'package:quizapp/shared/progress_bar.dart';
 import 'package:quizapp/shared/shared.dart';
 
 class TopicsScreen extends StatelessWidget {
@@ -43,7 +44,6 @@ class TopicsScreen extends StatelessWidget {
 
 class TopicItem extends StatelessWidget {
   final Topic topic;
-
   const TopicItem({Key key, this.topic}) : super(key: key);
 
   @override
@@ -86,6 +86,7 @@ class TopicItem extends StatelessWidget {
                     ),
                   ],
                 ),
+                TopicProgress(topic: topic),
               ],
             ),
           ),
