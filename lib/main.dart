@@ -13,8 +13,8 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
-      /// User data is put into the providers list, allowing all 
-      /// widgets to access the data no matter how deep they 
+      /// User data is put into the providers list, allowing all
+      /// widgets to access the data no matter how deep they
       /// are in the widget tree.
       providers: [
         StreamProvider<Report>.value(stream: Global.reportRef.documentStream),
@@ -33,7 +33,7 @@ class MyApp extends StatelessWidget {
           '/profile': (context) => ProfileScreen(),
           '/about': (context) => AboutScreen(),
         },
-        
+
         // Theme
         theme: ThemeData(
           fontFamily: 'Nunito',

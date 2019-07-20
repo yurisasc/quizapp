@@ -97,7 +97,7 @@ class TopicProgress extends StatelessWidget {
     try {
       int totalQuizzes = topic?.quizzes?.length;
       int completedQuizzes = report?.topics[topic.id]?.length;
-      return completedQuizzes / totalQuizzes;
+      return (completedQuizzes ?? 0) / (totalQuizzes ?? 0);
     } catch (err) {
       return 0.0;
     }
