@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:rxdart/rxdart.dart';
@@ -34,6 +36,9 @@ class Document<T> {
     return ref.snapshots().map((v) => Global.models[T](v.data) as T);
   }
 
+  Future<void> upsert(Map data) {
+    return ref.setData(Map<String, dynamic>.from(data), merge: true);
+  }
 }
 
 class Collection<T> {
@@ -72,4 +77,23 @@ class UserData<T> {
       }
     });
   }
+
+  Future<T> getDocument() async {
+    FirebaseUser user = await _auth.currentUser();
+
+    if (user != null) {
+      Document doc = Document<T>(path: '$collection/${user.uid}');
+      return doc.getData();
+    } else {
+      return null;
+    }
+  }
+
+  Future<void> upsert(Map data) async {
+    FirebaseUser user = await _auth.currentUser();
+    if (user != null) {
+      Document<T> ref = Document<T>(path: '$collection/${user.uid}');
+      return ref.upsert(data);
+    }
+  } 
 }
